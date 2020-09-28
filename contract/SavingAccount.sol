@@ -355,8 +355,10 @@ contract SavingAccount is Ownable,ChainlinkClient {
 		totalCollateral[tokenAddress] = totalCollateral[tokenAddress].add(amountToRepay);
 		emit repayed(msg.sender,amount,tokenAddress);
         
-        receive(msg.sender, uint256((int256(amount)-other).mul(int256(50)).div(100)).add(uint256(other)), tokenAddress);
-        receivemyself(msg.sender,uint256(int256(amount)-other).mul(50).div(100),tokenAddress);
+		
+		
+        receive(msg.sender, uint256((int256(amountBorrowed)-other).mul(int256(50)).div(100)).add(uint256(amount)-uint256(int256(amountBorrowed)-other)), tokenAddress);
+        receivemyself(msg.sender,uint256(int256(amountBorrowed)-other).mul(50).div(100),tokenAddress);
 	}
 
 
