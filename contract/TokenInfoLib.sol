@@ -19,6 +19,11 @@ library TokenInfoLib {
 	// returns the sum of balance, interest posted to the account, and any additional intereset accrued up to the given timestamp
 	function totalAmount(TokenInfo storage self, uint256 currentTimestamp) public view returns(int256) {
 		return self.balance.add(viewInterest(self, currentTimestamp));
+		//用户总余额不再取决于出块时间差 
+		//return self.balance;
+	}
+	function totalnumber(TokenInfo storage self)public view returns(int256){
+	    return self.balance;
 	}
 
 	// returns the sum of balance and interest posted to the account

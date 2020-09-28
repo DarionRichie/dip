@@ -447,7 +447,7 @@ contract SavingAccount is Ownable,ChainlinkClient {
 			.mul(100)
 			>
 			getAccountTotalUsdValue(targetAddress, true).mul(LIQUIDATE_THREADHOLD),
-			"The ratio of borrowed money and collateral must be larger than 95% in order to be liquidated.");
+			"The ratio of borrowed money and collateral must be larger than 85% in order to be liquidated.");
         emit liquidated(targetAddress);
 		uint coinsLen = getCoinLength();
 		for (uint i = 0; i < coinsLen; i++) {
