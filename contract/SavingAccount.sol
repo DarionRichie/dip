@@ -291,8 +291,8 @@ contract SavingAccount is Ownable,ChainlinkClient {
 		require(
 			(
 				int256(getAccountTotalUsdValue(msg.sender, false) * -1)
-				.add(int256(amount.mul(symbols.priceFromAddress(tokenAddress))))
-				.div(BASE)
+				.add(int256(amount.mul(symbols.priceFromAddress(tokenAddress))).div(BASE))
+				
 			).mul(100)
 			<=
 			(getAccountTotalUsdValue(msg.sender, true)).mul(BORROW_LTV),
