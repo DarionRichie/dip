@@ -434,7 +434,7 @@ contract SavingAccount is Ownable,ChainlinkClient {
 		TokenInfoLib.TokenInfo storage tokenInfo = accounts[msg.sender].tokenInfos[tokenAddress];
 
 		require(tokenInfo.totalAmount(block.timestamp) >= int256(amount), "Insufficient balance.");
-  		require(int256(getAccountTotalUsdValue(msg.sender, false) * -1) * 100 <= (getAccountTotalUsdValue(msg.sender, true) - int256(amount.mul(symbols.priceFromAddress(tokenAddress))) / BASE) * BORROW_LTV);
+  		require(int256(getAccountTotalUsdValue(msg.sender, false).mul(-1)).mul(100) <= (getAccountTotalUsdValue(msg.sender, true) - int256(amount.mul(symbols.priceFromAddress(tokenAddress)))).mul(BORROW_LTV).div(BASE);
         emit withdrawed(msg.sender,amount,tokenAddress);
 		tokenInfo.minusAmount(amount, 0, block.timestamp);
 		totalDeposits[tokenAddress] = totalDeposits[tokenAddress].sub(int256(amount));
