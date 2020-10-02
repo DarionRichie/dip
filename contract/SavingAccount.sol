@@ -279,8 +279,14 @@ contract SavingAccount is Ownable,ChainlinkClient {
 		return symbols.addressFromIndex(coinIndex);
 	}
 
-	function getCoinToUsdRate(uint256 coinIndex) public view returns(uint256) {
-		return symbols.priceFromIndex(coinIndex);
+	function getCoinToUsdRate(uint256 coinIndex) public view returns(uint256[] memory) {
+		//return symbols.priceFromIndex(coinIndex);
+		uint length = getCoinLength();
+		uint256[] memory  listOfPrice = new uint256[](length);
+		for(uint i=0;i<length;i++){
+			listOfPrice[i] = symbols.priceFromIndex(i);
+		}
+		return listOfPrice;
 	}
 
 	function borrow(address tokenAddress, uint256 amount) public payable {
